@@ -1,6 +1,6 @@
 FROM mongo
 
-WORKDIR mongo
+WORKDIR /mongo
 
 COPY .  .
 

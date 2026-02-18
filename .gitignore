@@ -1,0 +1,14 @@
+# -----Sensitivefile-----
+
+wanderlust
+wanderlust.pub
+
+# -----Terraform internals-----
+
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+
+# -----Not importtant file-----
+.DS_Store
