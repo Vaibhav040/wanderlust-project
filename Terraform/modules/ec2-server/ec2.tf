@@ -46,6 +46,20 @@ resource "aws_security_group" "allow_tls"{
         cidr_blocks = ["0.0.0.0/0"]
         description = "Backend Port open"
     }
+    ingress {
+        from_port = 31100
+        to_port = 31100
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+        description = "Backend NodePort open"
+    }
+    ingress {
+        from_port = 31000
+        to_port = 31000
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+        description = "Frontend NodePort open"
+    }
 
     # Outbound
     egress {
