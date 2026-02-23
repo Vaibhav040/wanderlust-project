@@ -26,6 +26,11 @@ update_manifests:
     - git remote set-url origin "https://oauth2:${GL_PAT}@gitlab.com/${CI_PROJECT_PATH}.git"
 
     # Commit and Push
-    - git add .
-    - git commit -m "Updated image tags in frontend and backend with $BACKEND_DOCKER_TAG in k8s"
-    - git push origin HEAD:main
+    - |
+      if git diff --quiet; then
+        echo "No changes to manifests. The tags might already be up to date."
+      else
+        git add .
+        git commit -m "Deploying Backend:$BACKEND_DOCKER_TAG Frontend:$FRONTEND_DOCKER_TAG"
+        git push origin HEAD:main
+      fi
