@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: vaibhav04c/wanderlust-frontend-beta:v1.0
+          image: vaibhav04c/wanderlust-frontend-beta:2.0
           ports:
             - containerPort: 5173
           livenessProbe:

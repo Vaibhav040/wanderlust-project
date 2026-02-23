@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: vaibhav04c/wanderlust-backend-beta:v1.0
+          image: vaibhav04c/wanderlust-backend-beta:2.0
           ports:
             - containerPort: 8080
           livenessProbe:
