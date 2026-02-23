@@ -30,7 +30,7 @@ spec:
                 - "db.adminCommand('ping')"
             initialDelaySeconds: 45
             periodSeconds: 20
-            timeoutSeconds: 5
+            timeoutSeconds: 10
           readinessProbe:
             exec:
               command:
@@ -40,13 +40,14 @@ spec:
                 - "db.adminCommand('ping')"
             initialDelaySeconds: 30
             periodSeconds: 10
+            timeoutSeconds: 10
           resources:
             requests:
-              cpu: "100m"
-              memory: "128Mi"
+              cpu: "250m"
+              memory: "512Mi"
             limits:
-              cpu: "200m"
-              memory: "256Mi"
+              cpu: "500m"
+              memory: "800Mi"
           volumeMounts:
             - name: mongo-storage
               mountPath: /data/db
