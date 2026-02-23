@@ -2,6 +2,7 @@ stages:
   - validate
   - security
   - build
+  - imageScan
   - push
   - trigger-cd
 
@@ -76,6 +77,32 @@ build_image:
     expire_in: 1 hour
   tags:
     - dev
+
+scan_images:
+  extends: .docker_setup
+  stage: imageScan
+  script:
+    - echo "Loading Backend image"
+    - docker load < backend_image.tar
+    - echo "Starting Backend Scan"
+    - |
+      docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
+      aquasec/trivy:latest image --exit-code 0 --severity HIGH,CRITICAL \
+      $DOCKER_USER/wanderlust-backend-beta:$BACKEND_DOCKER_TAG
+    
+    - echo "Backend Scan Complete."
+    - sleep 30
+
+    - echo "Loading Frontend image"
+    - docker load < frontend_image.tar
+    - echo "Starting Frontend Scan"
+    - |
+      docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
+      aquasec/trivy:latest image --exit-code 0 --severity HIGH,CRITICAL \
+      $DOCKER_USER/wanderlust-frontend-beta:$FRONTEND_DOCKER_TAG
+
+    - echo "Frontend Scan Complete."
+
 
 push_images:
   extends: .docker_setup

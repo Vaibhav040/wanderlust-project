@@ -60,6 +60,34 @@ resource "aws_security_group" "allow_tls"{
         cidr_blocks = ["0.0.0.0/0"]
         description = "Frontend NodePort open"
     }
+    ingress {
+        from_port = 30629
+        to_port = 30629
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+        description = "ArgoCd NodePort open"
+    }
+    ingress {
+        from_port = 32520
+        to_port = 32520
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+        description = "NodePort open"
+    }
+    ingress {
+        from_port = 8081
+        to_port = 8081
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+        description = "Port for Grafana open"
+    }
+    ingress {
+        from_port = 8082
+        to_port = 8082
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+        description = "Port for prometheus open"
+    }
 
     # Outbound
     egress {
