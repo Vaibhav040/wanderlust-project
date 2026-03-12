@@ -186,7 +186,7 @@ Push a commit to trigger the CI pipeline. ArgoCD will automatically sync the dep
 ![Terraform StateLocking](Assets/terra-statelocking.png)
 
 - Terraform plan
-![Terraform Plan](Assets/terra-paln.png)
+![Terraform Plan](Assets/terra-plan.png)
 
 - Terraform Apply
 ![Terraform Apply](Assets/terra-apply.png)
